@@ -1,0 +1,112 @@
+﻿@model CoditasPortal.Models.RegisterUser
+
+<body style="color:#1260CC;" >
+<section class="h-100 h-custom" style="background-color:#1260CC;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-7 col-xl-8">
+        <div class="card rounded-3">
+          @*<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
+            class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+            alt="Sample photo">*@
+            
+          <div class="card-body p-4 p-md-5">          
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration Form</h3>
+
+            <form class="px-md-2" asp-action="UserRegistration">
+            <div class="row mt-2" style="overflow: auto;">
+                <div class="col-md-6">
+                        <label class="required">First Name</label>
+                        <input asp-for="FirstName" type="text" class="form-control" placeholder="First">
+                         <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                       
+                    <div class="col-md-6">
+                        <label class="required">Last Name</label>
+                        <input asp-for="LastName" type="text" class="form-control"  placeholder="Last">
+                         <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+            </div>
+
+              <div class="row mt-3">
+                  <div class="col-md-6">
+                        <label class="required">Birthday</label>
+                        <input  asp-for="Birthdate"  class="form-control" placeholder="DD-MM-YYYY">
+                         <span asp-validation-for="Birthdate" class="text-danger"></span>
+                    </div>
+                       
+                    <div class="col-md-6">
+                        <label class="required">Gender</label>
+                        <select asp-for="Gender" asp-items="@ViewBag.Gender" class="form-control"></select>
+                       @*<input id="Gender" name="Gender" value="Male" type="radio">  
+                               Female  
+                       <input id="Gender" name="Gender" value="Female" type="radio"> *@ 
+                         <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+              </div>
+               <div class="row mt-4">
+                  <div class="col-md-6">
+                        <label class="required">Email</label>
+                        <input  asp-for="Email" type="email" class="form-control" placeholder="Email">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                       
+                    <div class="col-md-6">
+                        <label class="required">Mobile Number</label>
+                        <input asp-for="MobileNumber" class="form-control" type="tel" placeholder="888 888 8888" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="12"/>
+                        <span asp-validation-for="MobileNumber" class="text-danger"></span>
+                    </div>
+              </div>
+              <div class="row mt-5">
+                  <div class="col-md-6">
+                      <label class="required">Choose User Name</label>
+                       <input  asp-for="UserName" type="text" class="form-control " placeholder="User Name">
+                       <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="required">Password</label>
+                        <input asp-for="Password" type="password" class="form-control " placeholder="Password">
+                         <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>                                     
+              </div>
+              <div class="row mt-6">
+                   <div class="col-md-6">
+                        <label class="required">Confirm Password</label>
+                        <input  asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm Password">
+                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+              </div>
+              <div class="mt-5 text-center">
+                    <input class="btn btn-primary profile-button" value="Submit" type="submit"/>
+                     
+               </div>
+               <a asp-action="UserLogin" asp-controller="UserAuthentication"><b>Login Instead?</b></a>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+<style>
+    @@media (min-width: 1025px) {
+.h-custom {
+height: 100vh !important;
+}
+}
+.profile-button:active {
+        background: #682773;
+        box-shadow: none
+    }
+
+ .required:after {
+    content:" *";
+    color: red;
+  }
+</style>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
